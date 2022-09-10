@@ -1,0 +1,50 @@
+﻿<Window x:Class="HOYA_SIM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HOYA_SIM"
+        mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        DataContext="{StaticResource MVM}"
+        Height="1080" Width="1920">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding Loaded}"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding Unloaded}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Viewbox>
+        <Grid Width="1920" Height="1050">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.035*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0">
+                <Menu
+                    
+                    VerticalAlignment="Top"
+                    DockPanel.Dock="Top"
+                    Height="35">
+                    <MenuItem Header="_File" FontSize="20">
+                        <MenuItem Header="_Connect" Command="{Binding Connect}"/>
+                        <MenuItem Header="_Open" />
+                        <MenuItem Header="_Save" />
+                        <Separator />
+                        <MenuItem Header="_Exit" />
+                    </MenuItem>
+                    <MenuItem Header="_View" FontSize="20"/>
+                    <MenuItem Header="_Help" FontSize="20">
+                        <MenuItem Header="_About Us"/>
+                    </MenuItem>
+                </Menu>
+            </DockPanel>
+            <Grid Grid.Row="1" VerticalAlignment="Top" Margin="0,5,0,0">
+                <ContentControl
+                    Content="{Binding SelectedViewModel}"/>
+            </Grid>
+        </Grid>
+    </Viewbox>
+</Window>
